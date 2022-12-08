@@ -6,7 +6,7 @@ resource null_resource export-Instance {
     environment = {
       INSTANCE_ID     = var.instance_ID
       S3bucket_name   = var.src_bucket
-      Region          = var.src_provider_region
+      Region          = var.region
     }
   }  
 }

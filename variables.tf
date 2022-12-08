@@ -1,13 +1,26 @@
-variable "src_provider_region" {
+variable "region" {
   type = string
   description = "The deployment region"
-  default = "us-west-2"
+  default = ""
+}
+
+variable "access_key_id" {
+  type        = string
+  description = "Access key of the Storage Provider "
+  default     = ""
+  
+}
+
+variable "secret_access_key" {
+  type        = string
+  description = "Secret key of the Storage Provider"
+    default     = ""
 }
 
 variable "instance_ID" {
   type = string
   description = "EC2 instance id which we want to export"
-  default = "i-0c8d0b258e47275c4"
+  default = ""
 }
 
 variable "src_bucket" {
