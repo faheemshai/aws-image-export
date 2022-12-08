@@ -1,7 +1,7 @@
 variable "region" {
   type = string
   description = "The deployment region"
-  default = ""
+  default = "us-west-2"
 }
 
 variable "access_key_id" {
@@ -20,7 +20,7 @@ variable "secret_access_key" {
 variable "instance_ID" {
   type = string
   description = "EC2 instance id which we want to export"
-  default = ""
+  default = "i-026b2eeb9cf092377"
 }
 
 variable "src_bucket" {

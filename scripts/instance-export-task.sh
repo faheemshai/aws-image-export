@@ -10,7 +10,7 @@
 ec2_id=${INSTANCE_ID}
 s3_name=${S3bucket_name}
 region=${Region}
-export_id=$(aws ec2 create-instance-export-task  --instance-id ${ec2_id} --description "ec2 instance backup" --target-environment citrix --export-to-s3-task DiskImageFormat=vhd,S3Bucket=${s3_name} --region ${region} | grep ExportTaskId | awk '{print $2}' | sed "s/\"//g" | sed "s/\,//g")
+export_id=$(aws ec2 create-instance-export-task  --instance-id ${ec2_id} --description "ec2 instance backup" --target-environment citrix --export-to-s3-task DiskImageFormat=vhd,S3Bucket=${s3_name} --region ${region} | grep ExportTaskId | awk '{print $2}' | sed "s/\"//g" | sed "s/\,//g" |  sed "s/ //g")
 sleep 5s
 echo "${export_id}.vhd" > imagename.txt
 count=0
@@ -19,7 +19,7 @@ while true ; do
   export_status=$(aws ec2 describe-export-tasks --export-task-ids ${export_id} --region ${region} | grep State | awk '{print $2}' | sed "s/\"//g")
   
   echo "export_status : ${export_status}"
-  if [[ ${count} -gt 12 ]]; then
+  if [[ ${count} -gt 15 ]]; then
     echo "Timed out waiting for Image status to be ready"
     break;
   else 
@@ -36,5 +36,5 @@ while true ; do
   
   count=$((count + 1)) 
   echo "Waiting for Image export - ${export_id} status to be ready "
-  sleep 300
+  sleep 120
 done
