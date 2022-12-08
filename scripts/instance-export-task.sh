@@ -12,7 +12,7 @@ s3_name=${S3bucket_name}
 region=${Region}
 export_id=$(aws ec2 create-instance-export-task  --instance-id ${ec2_id} --description "ec2 instance backup" --target-environment citrix --export-to-s3-task DiskImageFormat=vhd,S3Bucket=${s3_name} --region ${region} | grep ExportTaskId | awk '{print $2}' | sed "s/\"//g" | sed "s/\,//g")
 sleep 5s
-
+echo "${export_id}.vhd" > imagename.txt
 count=0
 
 while true ; do

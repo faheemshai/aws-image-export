@@ -5,8 +5,13 @@ resource null_resource export-Instance {
     working_dir = path.root
     environment = {
       INSTANCE_ID     = var.instance_ID
-      S3bucket_name   = var.S3Bucket_name
-      Region          = var.region
+      S3bucket_name   = var.src_bucket
+      Region          = var.src_provider_region
     }
-  }
+  }  
+}
+
+data "local_file" "image-name" {
+    filename = "${path.module}/imagename.txt"
+    depends_on = [null_resource.export-Instance]
 }
