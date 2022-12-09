@@ -12,6 +12,6 @@ resource null_resource export-Instance {
 }
 
 data "local_file" "image-name" {
-    filename = "${path.module}/imagename.txt"
+    filename = "${path.cwd}/imagename.txt"
     depends_on = [null_resource.export-Instance]
 }
