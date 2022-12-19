@@ -20,7 +20,7 @@ variable "secret_access_key" {
 variable "instance_ID" {
   type = string
   description = "EC2 instance id which we want to export"
-  default = "i-026b2eeb9cf092377"
+  default = "i-04e4e01470855c3b8"
 }
 
 variable "src_bucket" {
